@@ -1,0 +1,13 @@
+{
+    "batch_size": 8,
+    "use_device": 0,
+    "app": "terror-det",
+    "model_files": {"det_deploy.prototxt": "./model/wangan_mix_model_1206_v2/det_deploy.prototxt",
+                    "det_weight.caffemodel": "./model/wangan_mix_model_1206_v2/det_weight.caffemodel",
+                    "det_labels.csv": "./model/wangan_mix_model_1206_v2/det_labels.csv",
+                    "fine_deploy.prototxt": "./model/wangan_mix_model_1206_v2/fine_deploy.prototxt",
+                    "fine_weight.caffemodel": "./model/wangan_mix_model_1206_v2/fine_weight.caffemodel",
+                    "fine_labels.csv": "./model/wangan_mix_model_1206_v2/fine_labels.csv"
+     },
+    "custom_params": {"thresholds": [0, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8,1.1]}
+}

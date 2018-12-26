@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 import json
 import argparse
@@ -11,6 +11,8 @@ def parse():
         help='url文件B, 每行一个包含url字段的json')
     args.add_argument('--operate', '-o', type=str, choices=['diff'],
         help='操作. diff差集')
+    args.add_argument('--urlfile_c', '-c', type=str, required=True,
+        help='输出文件')
     return args.parse_args()
 
 def bool_operate(urla, urlb, urlc, op='diff'):
@@ -38,7 +40,7 @@ if __name__ == "__main__":
     urla = args.urlfile_a
     urlb = args.urlfile_b
     op = args.operate
-    urlc = urla + '_' + op + '_' + urlb + '.lst'
+    urlc = args.urlfile_c
 
     bool_operate(urla, urlb, urlc, op)
 

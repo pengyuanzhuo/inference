@@ -51,10 +51,9 @@ def producer(img_queue, url_list, batch_size):
     item_batch = []
     for i, url in enumerate(url_list):
         if len(item_batch) == batch_size:
-            with lock:
-                print("Produce %d, [%d / %d] "% (cur_pid, i, num_urls))
-                img_queue.put(item_batch)
-                item_batch = []
+            print("Produce %d, [%d / %d] "% (cur_pid, i, num_urls))
+            img_queue.put(item_batch)
+            item_batch = []
         try:
             img = requests.get(url, timeout=10).content
             if img is not None:
@@ -73,7 +72,8 @@ def consumer(config, img_queue, batch_size, log_file):
             item_batch = img_queue.get()
             # processing
             reqs_body = make_reqs_body(item_batch)
-            rets = infer_image_batch(model, reqs_body)
+            with lock:
+                rets = infer_image_batch(model, reqs_body)
             for i, ret in enumerate(rets):
                 item = {}
                 key = list(item_batch[i])[0]

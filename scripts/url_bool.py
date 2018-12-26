@@ -25,7 +25,7 @@ def bool_operate(urla, urlb, urlc, op='diff'):
     f_b = open(urlb, 'r')
     b_list = []
     for line_b in f_b:
-        url = json.loads(line_b.strip())['url']
+        url = list(json.loads(line_b.strip()).keys())[0]
         b_list.append(url)
     f_b.close()
 
